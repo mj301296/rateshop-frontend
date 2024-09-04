@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.jsx
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import CarList from './components/carList';
+import AddCar from './components/AddCar';
+
+const App = () => {
+    return (
+        <Router>
+            <div>
+                <h1>Fleet Management</h1>
+                <Routes>
+                    <Route path="/all-cars" element={<CarList />} />
+                    <Route path="/add-car" element={<AddCar />} />
+                    {/* Add other routes for search and rent prediction */}
+                </Routes>
+            </div>
+        </Router>
+    );
+};
 
 export default App;
