@@ -36,3 +36,20 @@
     transform: rotate(360deg);
   }
 }
+  .tab-nav {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+  }
+
+  .tab-nav button {
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+
+  .tab-content {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+

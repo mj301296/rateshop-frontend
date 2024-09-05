@@ -9,7 +9,7 @@ export const getAllCars = async () => {
 };
 
 export const addCar = async (car) => {
-    return await axios.post(`${API_BASE_URL}/add-car`, car);
+    return await axios.put(`${API_BASE_URL}/add-car`, car);
 };
 
 export const searchCars = async (params) => {
@@ -23,3 +23,4 @@ export const predictRent = async (request) => {
 export const checkHealth = async () => {
     return await axios.get(`${API_BASE_URL}/health`);
 };
+

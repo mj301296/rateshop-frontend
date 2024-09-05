@@ -29,6 +29,16 @@ const CarList = () => {
                         <th>Year</th>
                         <th>Make</th>
                         <th>Model</th>
+                        <th>Trim</th>
+                        <th>Transmission</th>
+                        <th>Condition</th>
+                        <th>Odometer</th>
+                        <th>Fleet No</th>
+                        <th>Selling Price</th>
+                        <th>Hourly Rental Price</th>
+                        <th>Dialy Rental Price</th>
+                        <th>Weekly Rental Price</th>
+                        <th>Monthly Rental Price</th>
                         {/* Add other columns as needed */}
                     </tr>
                 </thead>
@@ -39,6 +49,16 @@ const CarList = () => {
                             <td>{car.carYear}</td>
                             <td>{car.carMake}</td>
                             <td>{car.carModel}</td>
+                            <td>{car.carTrim}</td>
+                            <td>{car.carTransmission}</td>
+                            <td>{car.carCondition}</td>
+                            <td>{car.carOdometer}</td>
+                            <td>{car.carFleetNo}</td>
+                            <td>{car.carSelllingPrice}</td>
+                            <td>{car.carHourlyRentalPrice}</td>
+                            <td>{car.carDailyRentalPrice}</td>
+                            <td>{car.carWeeklyRentalPrice}</td>
+                            <td>{car.carMonthlyRentalPrice}</td>
                             {/* Add other fields as needed */}
                         </tr>
                     ))}
