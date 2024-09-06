@@ -5,6 +5,7 @@ import CarList from './carList';
 import AddCar from './AddCar';
 import SearchCars from './SearchCars';
 import UpdateCar from './UpdateCar';
+import PredictRent from './PredictRent';
 // Import other components like SearchCars and PredictRent
 
 const Tabs = () => {
@@ -20,6 +21,8 @@ const Tabs = () => {
                     return <SearchCars />;
             case 'update-car':
                     return <UpdateCar />;
+            case 'predict-rent':
+                    return <PredictRent />;
             
             default:
                 return <CarList />;
@@ -33,6 +36,7 @@ const Tabs = () => {
                 <button onClick={() => setActiveTab('add-car')}>Add a New Car</button>
                 <button onClick={() => setActiveTab('search-car')}>Search Cars</button>
                 <button onClick={() => setActiveTab('update-car')}>Update Car</button>
+                <button onClick={() => setActiveTab('predict-rent')}>Predict Rent</button>
                 {/* Add buttons for search-cars and predict-rent */}
             </nav>
             <div className="tab-content">

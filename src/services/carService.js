@@ -12,6 +12,10 @@ export const addCar = async (car) => {
     return await axios.put(`${API_BASE_URL}/add-car`, car);
 };
 
+export const deleteCar = async (carNo) => {
+    return await axios.delete(`${API_BASE_URL}/delete-car`, {params: { carNo }});
+};
+
 export const searchCars = async (params) => {
     return await axios.get(`${API_BASE_URL}/search`, { params });
 };
