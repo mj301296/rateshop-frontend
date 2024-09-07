@@ -1,7 +1,7 @@
 // src/components/AddCar.js
 
 import React, { useState } from 'react';
-import { addCar } from '../services/carService';
+import { addCar, predictRent } from '../services/carService';
 
 const AddCar = () => {
     const [car, setCar] = useState({
@@ -28,6 +28,22 @@ const AddCar = () => {
         setCar({ ...car, [e.target.id]: e.target.value });
     };
 
+    const handlePredict = async () => {
+        try {
+            const prediction = await predictRent(car);
+            console.log(prediction.data);
+
+            const values = prediction.data;
+            setCar({ ...car, carSelllingPrice: values.sellingprice || car.carSelllingPrice,
+                carHourlyRentalPrice: values.hourly || car.carHourlyRentalPrice,
+                carDailyRentalPrice: values.daily || car.carDailyRentalPrice,
+                carWeeklyRentalPrice: values.weekly || car.carWeeklyRentalPrice,
+                carMonthlyRentalPrice: values.monthly || car.carMonthlyRentalPrice });
+        } catch (error) {
+            console.error('Error predicting rent:', error);
+        }
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -44,7 +60,7 @@ const AddCar = () => {
     return (
         <div>
             <h2>Add a New Car</h2>
-            <form onSubmit={handleSubmit}>
+            <form>
             <div className="form-group">
                     <label htmlFor="carNo">Car No</label>
                     <input type="text" id="carNo" placeholder="ABC4252" value={car.carNo} onChange={handleChange} />
@@ -95,6 +111,7 @@ const AddCar = () => {
                     <label htmlFor="carStatus">Status</label>
                     <input type="text" id="carStatus" placeholder="available/in-use/on-hold" value={car.carStatus} onChange={handleChange} />
                 </div>
+                <button type="button" onClick={handlePredict}>Predict Prices</button>
                 <div className="form-group">
                     <label htmlFor="carSelllingPrice">Selling price</label>
                     <input type="number" id="carSelllingPrice" placeholder="20000.0" value={car.carSelllingPrice} onChange={handleChange} />
@@ -118,7 +135,7 @@ const AddCar = () => {
                     <label htmlFor="carMonthlyRentalPrice">Monthly Rental Price</label>
                     <input type="number" id="carMonthlyRentalPrice" placeholder="240.5" value={car.carMonthlyRentalPrice} onChange={handleChange} />
                 </div>
-                <button type="submit">Add Car</button>
+                <button type="submit" onClick={handleSubmit}>Add Car</button>
             </form>
         </div>
     );

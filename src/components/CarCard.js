@@ -1,5 +1,18 @@
 import React from "react";
 
+const getStatusColor = (status) => {
+    switch (status) {
+        case 'available':
+            return 'lightgreen';
+        case 'on-hold':
+            return 'red';
+        case 'in-use':
+            return '#FFFF33';
+        default:
+            return '#555'; // Default color if status doesn't match
+    }
+};
+
 const CarCard= ({car}) =>{
     return (
     <div className="car-card">
@@ -9,7 +22,7 @@ const CarCard= ({car}) =>{
         <div className="car-details">
             <div className="car-specifics">
             <h3>{car.carMake} {car.carModel} {car.carTrim} {car.carBody} {car.carYear}</h3>
-            <span className="fleet-status">{car.carStatus}</span>
+            <span className="fleet-status" style={{ backgroundColor: getStatusColor(car.carStatus) }}>{car.carStatus}</span>
             </div>
             <div className="car-specifics">
                 <span><b>no plate:</b> {car.carNo}</span>

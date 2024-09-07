@@ -50,17 +50,12 @@ const UpdateCar = () => {
         <div>
             <h2>Update Car</h2>
             <input
-                type="text"
-                placeholder="Car No"
-                value={carNo}
-                onChange={(e) => setCarNo(e.target.value)}
-            
-            />
+                type="text" placeholder="Car No" id="carNo" value={carNo} onChange={(e) => setCarNo(e.target.value)}/>
             <button type="button" onClick={handleSearch}>Fetch Car Details</button>
             {carDetails && (
             <form>
                 <div className="form-group">
-                    <label htmlFor="carNo">Car Year</label>
+                    <label htmlFor="carYear">Car Year</label>
                     <input type="number" id="carYear" placeholder="2015" value={carDetails.carYear} onChange={handleInputChange} />
                 </div> 
                 <div className="form-group">

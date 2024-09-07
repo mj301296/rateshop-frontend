@@ -3,7 +3,6 @@ import { getAllCars } from '../services/carService';
 import CarCard from './CarCard';
 
 const CarList = () => {
-    const [cars, setCars] = useState([]);
     
     // Assuming each car has a 'status' field that determines if it's "on hold", "in use", or "available"
     const [onHoldCars, setOnHoldCars] = useState([]);
@@ -18,7 +17,6 @@ const CarList = () => {
         try {
             const response = await getAllCars();
             const allCars = response.data;
-            setCars(allCars);
             // Filter cars based on status
             setOnHoldCars(allCars.filter(car => car.carStatus === 'on-hold'));
             setInUseCars(allCars.filter(car => car.carStatus === 'in-use'));
@@ -31,7 +29,7 @@ const CarList = () => {
     return (
         <div>       
             <div className="car-section">
-                <h3>On Hold</h3>
+                <h3>On Hold: {onHoldCars.length}</h3>
                 {onHoldCars.length > 0 ? (
                     onHoldCars.map(car => (
                         <CarCard key={car.carNo} car={car} />
@@ -42,7 +40,7 @@ const CarList = () => {
             </div>
 
             <div className="car-section">
-                <h3>In Use</h3>
+                <h3>In Use: {inUseCars.length}</h3>
                 {inUseCars.length > 0 ? (
                     inUseCars.map(car => (
                         <CarCard key={car.carNo} car={car} />
@@ -53,7 +51,7 @@ const CarList = () => {
             </div>
 
             <div className="car-section">
-                <h3>Available</h3>
+                <h3>Available: {availableCars.length}</h3>
                 {availableCars.length > 0 ? (
                     availableCars.map(car => (
                         <CarCard key={car.carNo} car={car} />

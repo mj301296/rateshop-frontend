@@ -37,7 +37,6 @@ const Tabs = () => {
                 <button onClick={() => setActiveTab('search-car')}>Search Cars</button>
                 <button onClick={() => setActiveTab('update-car')}>Update Car</button>
                 <button onClick={() => setActiveTab('predict-rent')}>Predict Rent</button>
-                {/* Add buttons for search-cars and predict-rent */}
             </nav>
             <div className="tab-content">
                 {renderContent()}
