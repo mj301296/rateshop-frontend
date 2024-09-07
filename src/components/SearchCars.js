@@ -15,7 +15,9 @@ const SearchCars = () => {
         carTransmission: '',
         carCondition: '',
         carOdometer: '',
-        carFleetNo: ''
+        carGasReading: '',
+        carFleetNo: '',
+        carStatus: ''
     });
     const [cars, setCars] = useState([]);
 
@@ -52,7 +54,9 @@ const SearchCars = () => {
                 <input type="text" id="carTransmission" placeholder="Transmission" value={searchParams.carTransmission} onChange={handleInputChange} />
                 <input type="number" id="carCondition" placeholder="Condition" value={searchParams.carCondition} onChange={handleInputChange} />
                 <input type="number" id="carOdometer" placeholder="Odometer" value={searchParams.carOdometer} onChange={handleInputChange} />
+                <input type="number" id="carGasReading" placeholder="0-8" value={searchParams.carGasReading} onChange={handleInputChange} />
                 <input type="text" id="carFleetNo" placeholder="Fleet No" value={searchParams.carFleetNo} onChange={handleInputChange} />
+                <input type="text" id="carStatus" placeholder="available/in-use/on-hold" value={searchParams.carStatus} onChange={handleInputChange} />
                 <button type="button" onClick={handleSearch}>Search</button>
             </form>
 
