@@ -8,10 +8,10 @@ const UpdateCar = () => {
     const [carDetails, setCarDetails] =  useState('');
 
     const handleInputChange = (e) => {
-        const { name, value } = e.target;
+        const { id, value } = e.target;
         setCarDetails({
             ...carDetails,
-            [name]: value
+            [id]: value
         });
     };
 
@@ -59,20 +59,75 @@ const UpdateCar = () => {
             <button type="button" onClick={handleSearch}>Fetch Car Details</button>
             {carDetails && (
             <form>
-                <input type="number" name="carYear" placeholder="Year" value={carDetails.carYear} onChange={handleInputChange} />
-                <input type="text" name="carMake" placeholder="Make" value={carDetails.carMake} onChange={handleInputChange} />
-                <input type="text" name="carModel" placeholder="Model" value={carDetails.carModel} onChange={handleInputChange} />
-                <input type="text" name="carTrim" placeholder="Trim" value={carDetails.carTrim} onChange={handleInputChange} />
-                <input type="text" name="carBody" placeholder="Body" value={carDetails.carBody} onChange={handleInputChange} />
-                <input type="text" name="carTransmission" placeholder="Transmission" value={carDetails.carTransmission} onChange={handleInputChange} />
-                <input type="number" name="carCondition" placeholder="Condition" value={carDetails.carCondition} onChange={handleInputChange} />
-                <input type="number" name="carOdometer" placeholder="Odometer" value={carDetails.carOdometer} onChange={handleInputChange} />
-                <input type="text" name="carFleetNo" placeholder="Fleet No" value={carDetails.carFleetNo} onChange={handleInputChange} />
-                <input type="number" name="carSelllingPrice" placeholder="Selling Price" value={carDetails.carSelllingPrice} onChange={handleInputChange} />
-                <input type="number" name="carHourlyRentalPrice" placeholder="Hourly Rental Price" value={carDetails.carHourlyRentalPrice} onChange={handleInputChange} />
-                <input type="number" name="carDailyRentalPrice" placeholder="Daily Rental Price" value={carDetails.carDailyRentalPrice} onChange={handleInputChange} />
-                <input type="number" name="carWeeklyRentalPrice" placeholder="Weekly Rental Price" value={carDetails.carWeeklyRentalPrice} onChange={handleInputChange} />
-                <input type="number" name="carMonthlyRentalPrice" placeholder="Monthly Rental Price" value={carDetails.carMonthlyRentalPrice} onChange={handleInputChange} />
+                <div className="form-group">
+                    <label htmlFor="carNo">Car Year</label>
+                    <input type="number" id="carYear" placeholder="2015" value={carDetails.carYear} onChange={handleInputChange} />
+                </div> 
+                <div className="form-group">
+                    <label htmlFor="carMake">Make</label>
+                    <input type="text" id="carMake" placeholder="Kia" value={carDetails.carMake} onChange={handleInputChange} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="carModel">Model</label>
+                    <input type="text" id="carModel" placeholder="Corolla" value={carDetails.carModel} onChange={handleInputChange} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="carTrim">Trim</label>
+                    <input type="text" id="carTrim" placeholder="LX" value={carDetails.carTrim} onChange={handleInputChange} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="carBody">Body</label>
+                    <input type="text" id="carBody" placeholder="SUV" value={carDetails.carBody} onChange={handleInputChange} />
+                </div>
+                
+                <div className="form-group">
+                    <label htmlFor="carTransmission">Transmission</label>
+                    <input type="text" id="carTransmission" placeholder="automatic/manual" value={carDetails.carTransmission} onChange={handleInputChange} />
+                </div>
+
+                <div className="form-group">
+                    <label htmlFor="carCondition">Condition</label>
+                    <input type="number" id="carCondition" placeholder="1-9" value={carDetails.carCondition} onChange={handleInputChange} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="carOdometer">Odometer</label>
+                    <input type="number" id="carOdometer" placeholder="Odometer" value={carDetails.carOdometer} onChange={handleInputChange} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="carGasReading">Gas Reading</label>
+                    <input type="text" id="carGasReading" placeholder="0-8" value={carDetails.carGasReading} onChange={handleInputChange} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="carFleetNo">Fleet No</label>
+                    <input type="text" id="carFleetNo" placeholder="A123" value={carDetails.carFleetNo} onChange={handleInputChange} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="carStatus">Status</label>
+                    <input type="text" id="carStatus" placeholder="available/in-use/on-hold" value={carDetails.carStatus} onChange={handleInputChange} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="carSelllingPrice">Selling price</label>
+                    <input type="number" id="carSelllingPrice" placeholder="20000.0" value={carDetails.carSelllingPrice} onChange={handleInputChange} />
+                </div>
+
+                <div className="form-group">
+                    <label htmlFor="carHourlyRentalPrice">Hourly Rental Price</label>
+                    <input type="number" id="carHourlyRentalPrice" placeholder="1.5" value={carDetails.carHourlyRentalPrice} onChange={handleInputChange} />
+                </div>
+                
+                <div className="form-group">
+                    <label htmlFor="carDailyRentalPrice">Daily Rental Price</label>
+                    <input type="number" id="carDailyRentalPrice" placeholder="10.2" value={carDetails.carDailyRentalPrice} onChange={handleInputChange} />
+                </div>
+
+                <div className="form-group">
+                    <label htmlFor="carWeeklyRentalPrice">Weekly Rental Price</label>
+                    <input type="number" id="carWeeklyRentalPrice" placeholder="70.5" value={carDetails.carWeeklyRentalPrice} onChange={handleInputChange} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="carMonthlyRentalPrice">Monthly Rental Price</label>
+                    <input type="number" id="carMonthlyRentalPrice" placeholder="240.5" value={carDetails.carMonthlyRentalPrice} onChange={handleInputChange} />
+                </div>
                 <button type="button" onClick={handleUpdate}>Update Car</button>
                 <button type="button" onClick={handleDelete}>Delete Car</button>
             </form>

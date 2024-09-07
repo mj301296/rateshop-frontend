@@ -14,7 +14,9 @@ const AddCar = () => {
         carTransmission: '',
         carCondition: '',
         carOdometer: '',
+        carGasReading: '',
         carFleetNo: '',
+        carStatus: '',
         carSelllingPrice: '',
         carHourlyRentalPrice: '',
         carDailyRentalPrice: '',
@@ -23,13 +25,15 @@ const AddCar = () => {
     });
 
     const handleChange = (e) => {
-        setCar({ ...car, [e.target.name]: e.target.value });
+        setCar({ ...car, [e.target.id]: e.target.value });
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await addCar(car);
+            const addParams = Object.fromEntries(
+                Object.entries(car).filter(([_, value]) => value !== ''));
+            await addCar(addParams);
             alert('Car added successfully');
         } catch (error) {
             console.error('Error adding car:', error);
@@ -41,21 +45,79 @@ const AddCar = () => {
         <div>
             <h2>Add a New Car</h2>
             <form onSubmit={handleSubmit}>
-                <input type="text" name="carNo" placeholder="Car No" value={car.carNo} onChange={handleChange} required />
-                <input type="number" name="carYear" placeholder="Car Year" value={car.carYear} onChange={handleChange} required />
-                <input type="text" name="carMake" placeholder="Make" value={car.carMake} onChange={handleChange} required/>
-                <input type="text" name="carModel" placeholder="Model" value={car.carModel} onChange={handleChange} />
-                <input type="text" name="carTrim" placeholder="Trim" value={car.carTrim} onChange={handleChange} required/>
-                <input type="text" name="carBody" placeholder="Body" value={car.carBody} onChange={handleChange} required/>
-                <input type="text" name="carTransmission" placeholder="Transmission" value={car.carTransmission} onChange={handleChange} required/>
-                <input type="number" name="carCondition" placeholder="Condition" value={car.carCondition} onChange={handleChange} required/>
-                <input type="number" name="carOdometer" placeholder="Odometer" value={car.carOdometer} onChange={handleChange} required/>
-                <input type="text" name="carFleetNo" placeholder="Fleet No" value={car.carFleetNo} onChange={handleChange} required/>
-                <input type="number" name="carSelllingPrice" placeholder="Car Selling Price" value={car.carSelllingPrice} onChange={handleChange} />
-                <input type="number" name="carHourlyRentalPrice" placeholder="Car Hourly Rental Price" value={car.carHourlyRentalPrice} onChange={handleChange} required/>
-                <input type="number" name="carDailyRentalPrice" placeholder="Car Daily Rental Price" value={car.carDailyRentalPrice} onChange={handleChange} required/>
-                <input type="number" name="carWeeklyRentalPrice" placeholder="Car Weekly Rental Price" value={car.carWeeklyRentalPrice} onChange={handleChange} required/>
-                <input type="number" name="carMonthlyRentalPrice" placeholder="Car Monthly Rental Price" value={car.carMonthlyRentalPrice} onChange={handleChange} required/>
+            <div className="form-group">
+                    <label htmlFor="carNo">Car No</label>
+                    <input type="text" id="carNo" placeholder="ABC4252" value={car.carNo} onChange={handleChange} />
+            </div>
+            <div className="form-group">
+                    <label htmlFor="carYear">Car Year</label>
+                    <input type="number" id="carYear" placeholder="2015" value={car.carYear} onChange={handleChange} />
+                </div> 
+                <div className="form-group">
+                    <label htmlFor="carMake">Make</label>
+                    <input type="text" id="carMake" placeholder="Kia" value={car.carMake} onChange={handleChange} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="carModel">Model</label>
+                    <input type="text" id="carModel" placeholder="Corolla" value={car.carModel} onChange={handleChange} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="carTrim">Trim</label>
+                    <input type="text" id="carTrim" placeholder="LX" value={car.carTrim} onChange={handleChange} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="carBody">Body</label>
+                    <input type="text" id="carBody" placeholder="SUV" value={car.carBody} onChange={handleChange} />
+                </div>
+                
+                <div className="form-group">
+                    <label htmlFor="carTransmission">Transmission</label>
+                    <input type="text" id="carTransmission" placeholder="automatic/manual" value={car.carTransmission} onChange={handleChange} />
+                </div>
+
+                <div className="form-group">
+                    <label htmlFor="carCondition">Condition</label>
+                    <input type="number" id="carCondition" placeholder="1-9" value={car.carCondition} onChange={handleChange} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="carOdometer">Odometer</label>
+                    <input type="number" id="carOdometer" placeholder="Odometer" value={car.carOdometer} onChange={handleChange} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="carGasReading">Gas Reading</label>
+                    <input type="text" id="carGasReading" placeholder="0-8" value={car.carGasReading} onChange={handleChange} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="carFleetNo">Fleet No</label>
+                    <input type="text" id="carFleetNo" placeholder="A123" value={car.carFleetNo} onChange={handleChange} />
+                </div> 
+                <div className="form-group">
+                    <label htmlFor="carStatus">Status</label>
+                    <input type="text" id="carStatus" placeholder="available/in-use/on-hold" value={car.carStatus} onChange={handleChange} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="carSelllingPrice">Selling price</label>
+                    <input type="number" id="carSelllingPrice" placeholder="20000.0" value={car.carSelllingPrice} onChange={handleChange} />
+                </div>
+
+                <div className="form-group">
+                    <label htmlFor="carHourlyRentalPrice">Hourly Rental Price</label>
+                    <input type="number" id="carHourlyRentalPrice" placeholder="1.5" value={car.carHourlyRentalPrice} onChange={handleChange} />
+                </div>
+                
+                <div className="form-group">
+                    <label htmlFor="carDailyRentalPrice">Daily Rental Price</label>
+                    <input type="number" id="carDailyRentalPrice" placeholder="10.2" value={car.carDailyRentalPrice} onChange={handleChange} />
+                </div>
+
+                <div className="form-group">
+                    <label htmlFor="carWeeklyRentalPrice">Weekly Rental Price</label>
+                    <input type="number" id="carWeeklyRentalPrice" placeholder="70.5" value={car.carWeeklyRentalPrice} onChange={handleChange} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="carMonthlyRentalPrice">Monthly Rental Price</label>
+                    <input type="number" id="carMonthlyRentalPrice" placeholder="240.5" value={car.carMonthlyRentalPrice} onChange={handleChange} />
+                </div>
                 <button type="submit">Add Car</button>
             </form>
         </div>

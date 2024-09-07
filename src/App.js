@@ -9,11 +9,6 @@ const App = () => {
             <div>
                 <h1>Fleet Management</h1>
                 <Tabs />
-                {/* <Routes>
-                    <Route path="/all-cars" element={<CarList />} />
-                    <Route path="/add-car" element={<AddCar />} />
-                    {/* Add other routes for search and rent prediction */}
-                {/* </Routes> */} 
             </div>
     );
 };

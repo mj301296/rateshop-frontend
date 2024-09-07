@@ -13,10 +13,10 @@ const PredictRent = () => {
     });
 
     const handleInputChange = (e) => {
-        const { name, value } = e.target;
+        const { id, value } = e.target;
         setCarDetails({
             ...carDetails,
-            [name]: value
+            [id]: value
         });
     };
     const [rentPrediction, setRentPrediction] = useState(null);
@@ -34,15 +34,38 @@ const PredictRent = () => {
         <div>
             <h2>Predict Rent</h2>
             <form>
-                <input type="number" name="carYear" placeholder="Year" value={carDetails.carYear} onChange={handleInputChange} />
-                <input type="text" name="carMake" placeholder="Make" value={carDetails.carMake} onChange={handleInputChange} />
-                <input type="text" name="carTrim" placeholder="Trim" value={carDetails.carTrim} onChange={handleInputChange} />
-                <input type="text" name="carBody" placeholder="Body" value={carDetails.carBody} onChange={handleInputChange} />
-                <input type="text" name="carTransmission" placeholder="Transmission" value={carDetails.carTransmission} onChange={handleInputChange} />
-                <input type="number" name="carCondition" placeholder="Condition" value={carDetails.carCondition} onChange={handleInputChange} />
-                <input type="number" name="carOdometer" placeholder="Odometer" value={carDetails.carOdometer} onChange={handleInputChange} />
-                <button type="button" onClick={handlePredict}>Predict Rent</button>
+                <div className="form-group">
+                    <label htmlFor="carYear">Year</label>
+                    <input type="number" id="carYear" placeholder="2015" value={carDetails.carYear} onChange={handleInputChange} />
+                </div> 
+                <div className="form-group">
+                    <label htmlFor="carMake">Make</label>
+                    <input type="text" id="carMake" placeholder="Kia" value={carDetails.carMake} onChange={handleInputChange} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="carTrim">Trim</label>
+                    <input type="text" id="carTrim" placeholder="LX" value={carDetails.carTrim} onChange={handleInputChange} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="carBody">Body</label>
+                    <input type="number" id="carBody" placeholder="SUV" value={carDetails.carBody} onChange={handleInputChange} />
+                </div>
+                
+                <div className="form-group">
+                    <label htmlFor="carTransmission">Transmission</label>
+                    <input type="text" id="carTransmission" placeholder="automatic/manual" value={carDetails.carTransmission} onChange={handleInputChange} />
+                </div>
+
+                <div className="form-group">
+                    <label htmlFor="carCondition">Condition</label>
+                    <input type="number" id="carCondition" placeholder="1-9" value={carDetails.carCondition} onChange={handleInputChange} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="carOdometer">Condition</label>
+                    <input type="number" id="carOdometer" placeholder="Odometer" value={carDetails.carOdometer} onChange={handleInputChange} />
+                </div>
             </form>
+            <button type="button" onClick={handlePredict}>Predict Rent</button>
             {rentPrediction && (
                 <div>
                     <p>Selling Price: {rentPrediction.sellingprice}</p>
