@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { searchCars } from '../services/carService';
+import CarCard from './CarCard';
 
 const SearchCars = () => {
     const [searchParams, setSearchParams] = useState({
@@ -19,10 +20,10 @@ const SearchCars = () => {
     const [cars, setCars] = useState([]);
 
     const handleInputChange = (e) => {
-        const { name, value } = e.target;
+        const { id, value } = e.target;
         setSearchParams({
             ...searchParams,
-            [name]: value
+            [id]: value
         });
     };
 
@@ -42,55 +43,23 @@ const SearchCars = () => {
         <div>
             <h2>Search Cars</h2>
             <form>
-                <input type="text" name="carNo" placeholder="Car No" value={searchParams.carNo} onChange={handleInputChange} />
-                <input type="number" name="carYear" placeholder="Year" value={searchParams.carYear} onChange={handleInputChange} />
-                <input type="text" name="carMake" placeholder="Make" value={searchParams.carMake} onChange={handleInputChange} />
-                <input type="text" name="carModel" placeholder="Model" value={searchParams.carModel} onChange={handleInputChange} />
-                <input type="text" name="carTrim" placeholder="Trim" value={searchParams.carTrim} onChange={handleInputChange} />
-                <input type="text" name="carBody" placeholder="Body" value={searchParams.carBody} onChange={handleInputChange} />
-                <input type="text" name="carTransmission" placeholder="Transmission" value={searchParams.carTransmission} onChange={handleInputChange} />
-                <input type="number" name="carCondition" placeholder="Condition" value={searchParams.carCondition} onChange={handleInputChange} />
-                <input type="number" name="carOdometer" placeholder="Odometer" value={searchParams.carOdometer} onChange={handleInputChange} />
-                <input type="text" name="carFleetNo" placeholder="Fleet No" value={searchParams.carFleetNo} onChange={handleInputChange} />
+                <input type="text" id="carNo" placeholder="Car No" value={searchParams.carNo} onChange={handleInputChange} />
+                <input type="number" id="carYear" placeholder="Year" value={searchParams.carYear} onChange={handleInputChange} />
+                <input type="text" id="carMake" placeholder="Make" value={searchParams.carMake} onChange={handleInputChange} />
+                <input type="text" id="carModel" placeholder="Model" value={searchParams.carModel} onChange={handleInputChange} />
+                <input type="text" id="carTrim" placeholder="Trim" value={searchParams.carTrim} onChange={handleInputChange} />
+                <input type="text" id="carBody" placeholder="Body" value={searchParams.carBody} onChange={handleInputChange} />
+                <input type="text" id="carTransmission" placeholder="Transmission" value={searchParams.carTransmission} onChange={handleInputChange} />
+                <input type="number" id="carCondition" placeholder="Condition" value={searchParams.carCondition} onChange={handleInputChange} />
+                <input type="number" id="carOdometer" placeholder="Odometer" value={searchParams.carOdometer} onChange={handleInputChange} />
+                <input type="text" id="carFleetNo" placeholder="Fleet No" value={searchParams.carFleetNo} onChange={handleInputChange} />
                 <button type="button" onClick={handleSearch}>Search</button>
             </form>
 
             {cars.length > 0 && (
-                <div>
-                    <h3>Search Results</h3>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Car No</th>
-                                <th>Year</th>
-                                <th>Make</th>
-                                <th>Model</th>
-                                <th>Trim</th>
-                                <th>Body</th>
-                                <th>Transmission</th>
-                                <th>Condition</th>
-                                <th>Odometer</th>
-                                <th>Fleet No</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {cars.map(car => (
-                                <tr key={car.carNo}>
-                                    <td>{car.carNo}</td>
-                                    <td>{car.carYear}</td>
-                                    <td>{car.carMake}</td>
-                                    <td>{car.carModel}</td>
-                                    <td>{car.carTrim}</td>
-                                    <td>{car.carBody}</td>
-                                    <td>{car.carTransmission}</td>
-                                    <td>{car.carCondition}</td>
-                                    <td>{car.carOdometer}</td>
-                                    <td>{car.carFleetNo}</td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
+                cars.map(car=>(
+                    <CarCard key={car.carNo} car={car}/>
+                ))
             )}
         </div>
     );
