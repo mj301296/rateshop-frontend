@@ -86,16 +86,80 @@ This is the **React** frontend of the Car Rental application, providing the user
 - **Docker**: Containerization of the frontend application for consistent and scalable deployment.
 - **Kubernetes**: For deploying and managing the application in a cloud environment.
 
-## Kubernetes Deployment
+## Cloud Deployment
 
-To deploy the application to a Kubernetes cluster, use the provided `rateshop-frontend-deployment.yaml` file.
+### Technologies Used
 
-1. Apply the Kubernetes configuration:
+- **Amazon EKS**: managed Kubernetes cluster.
+- **Amazon RDS**: for PostgresSQL.
+- **Amazon S3 Bucket**: For storing rent-predictor package.
+- **Amazon ECR**: for storing docker images.
+
+### Files needed
+
+- **rateshop-backend-deployment.yaml**: configuration for Spring boot backend.
+- **rateshop-frontend-deployment.yaml**: configuration for React frontend.
+- **rent-predictor.yaml**: configuration for FastApi app.
+- **configMap.yaml**: configuration of the URLs for communication between services.
+- **secret.yaml**: secrets like AWS credentials, S3 bucket path, DB credentials.
+
+1. Tag and Push docker images to ECR:
 
     ```bash
-    kubectl apply -f rateshop-frontend-deployment.yaml
+    docker tag <docker-image>:latest <amazonecs-url>/<docker-image>:latest
+    docker push <amazonecs-url>/<docker-image>:latest
     ```
 
-2. The frontend application will be exposed via a LoadBalancer, and you can access it using the external IP provided by the LoadBalancer service.
+2. Create cluster using ekctbl:
 
+    ```bash
+    eksctl create cluster \
+    --name car-rental \
+    --version 1.25 \
+    --region us-east-2 \
+    --nodegroup-name linux-nodes \
+    --node-type t3.micro \
+    --nodes 3 \
+    --nodes-min 1 \
+    --nodes-max 4 \
+    --managed
+    ```
 
+3. Apply configurations:
+
+    ```bash
+    kubectl apply -f rateshop-backend-deployment.yaml -f rateshop-frontend-deployment.yaml -f rent-predictor.yaml -f configMap.yaml -f secret.yaml
+    ```
+4. Check deployments/services/replicaSet/pods:
+
+    ```bash
+    kubectl get deployments/svc/rs/pods
+    ```
+5. Get Loadbalancers external IP for frontend and backend service:
+    - The frontend and the backend are exposed outside of cluster using Load Balancers.
+    - To make sure only requests from front-end are being accepted, CORS configuration is set-up in Spring app.
+    - So, the backend needs to be provided with the frontend's LoadBalancer external-IP so that it could allow requests.
+    - Similarly, the front-end also needs the back-end's LoadBalancer external-IP to route requests.
+
+    ```bash
+    kubectl get svc
+    ```
+
+6. Update IP's in configMap and apply:
+   
+    ```bash
+    kubectl apply -f configMap.yaml
+    ```
+
+7. Restart deployment if necessary:
+
+    ```bash
+    kubectl rollout restart deployment rateshop-backend-deployment
+    kubectl rollout restart deployment rateshop-frontend-deployment
+    ```
+8. Check logs if necessary:
+
+    ```bash
+    kubectl logs <pod-name>
+    ```
+9. Access the app via externalIP of rateshop-frontend-service
