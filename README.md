@@ -1,70 +1,101 @@
-# Getting Started with Create React App
+# Rateshop Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This repository is part of the **Car Rental Front Office Operations** application, which consists of the following components:
 
-## Available Scripts
+- [**CarRentalPricingPrediction**](https://github.com/mj301296/CarRentalPricingPrediction): A Python package for predicting car rental prices.
+- [**CarRentalPredictionApi**](https://github.com/mj301296/CarRentalPredictionApi): A FastAPI microservice that provides car rental price predictions.
+- [**Rateshop Backend**](https://github.com/mj301296/RateShop): A Spring Boot application that handles car fleet management.
+- [**Rateshop Frontend**](https://github.com/mj301296/rateshop-frontend): A React application offering an interactive user interface for managing car fleet operations.
 
-In the project directory, you can run:
+## Rateshop Frontend
 
-### `npm start`
+This is the **React** frontend of the Car Rental application, providing the user interface to interact with the car fleet system. Users can:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- View a list of cars
+- Add a new car
+- Update existing car details
+- Search for cars
+- Predict car rental prices
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Explanation of Files and Directories
 
-### `npm test`
+- **`src/`**: Source code for the React frontend application.
+  - **`App.js`**: The main component that renders the application, managing navigation between different features.
+  - **`App.css`**: Global styles for the application.
+  - **`index.js`**: Entry point for the React app, rendering the root component into the DOM.
+  - **`components/`**: Contains the main components for the application.
+    - **`AddCar.js`**: A form component that allows users to add a new car to the fleet.
+    - **`CarCard.js`**: A component that displays the details of a single car.
+    - **`CarList.js`**: Displays a list of cars available in the fleet.
+    - **`PredictRent.js`**: Provides an interface for users to input car details and predict rental prices.
+    - **`SearchCars.js`**: A search bar for filtering cars by various attributes.
+    - **`Tabs.js`**: A navigation component for switching between different functionalities (add, search, predict, etc.).
+    - **`UpdateCar.js`**: A form for updating car details.
+  - **`services/`**: Contains services for making API calls to the backend.
+    - **`carService.js`**: Handles all interactions with the backend API, such as fetching car data, adding new cars, and predicting rent.
+- **`rateshop-frontend-deployment.yaml`**: Kubernetes deployment file for deploying the React app to a cluster.
+- **`package.json`**: Lists dependencies and scripts for running the application.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Installation
 
-### `npm run build`
+1. Install dependencies:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    ```bash
+    npm install
+    ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. Start the development server:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    ```bash
+    npm start
+    ```
 
-### `npm run eject`
+    The application will be available at `http://localhost:3000`.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Building for Production
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Build the project:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+    ```bash
+    npm run build
+    ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+    This will generate a `build/` folder containing the production-ready files.
 
-## Learn More
+## Steps to Run the App via Docker
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. Build the Docker image:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    ```bash
+    docker build -t rateshop-frontend .
+    ```
 
-### Code Splitting
+2. Run the application in a Docker container:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+    ```bash
+    docker run -p 3000:3000 rateshop-frontend
+    ```
 
-### Analyzing the Bundle Size
+    The application will be accessible at `http://localhost:3000`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Technologies Used
 
-### Making a Progressive Web App
+- **React**: A JavaScript library for building user interfaces.
+- **Axios**: For making HTTP requests to the backend API.
+- **CSS**: For styling the components and the overall layout.
+- **Docker**: Containerization of the frontend application for consistent and scalable deployment.
+- **Kubernetes**: For deploying and managing the application in a cloud environment.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Kubernetes Deployment
 
-### Advanced Configuration
+To deploy the application to a Kubernetes cluster, use the provided `rateshop-frontend-deployment.yaml` file.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+1. Apply the Kubernetes configuration:
 
-### Deployment
+    ```bash
+    kubectl apply -f rateshop-frontend-deployment.yaml
+    ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+2. The frontend application will be exposed via a LoadBalancer, and you can access it using the external IP provided by the LoadBalancer service.
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
