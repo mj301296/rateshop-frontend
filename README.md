@@ -14,6 +14,7 @@ This is the **React** frontend of the Car Rental application, providing the user
 - View a list of cars
 - Add a new car
 - Update existing car details
+- Delete a car
 - Search for cars
 - Predict car rental prices
 
@@ -35,6 +36,20 @@ This is the **React** frontend of the Car Rental application, providing the user
     - **`carService.js`**: Handles all interactions with the backend API, such as fetching car data, adding new cars, and predicting rent.
 - **`rateshop-frontend-deployment.yaml`**: Kubernetes deployment file for deploying the React app to a cluster.
 - **`package.json`**: Lists dependencies and scripts for running the application.
+
+## Screenshots
+
+### View all cars
+![Home Page](./assets/all-cars.png)
+
+### Add Car
+![Add Car](./assets/add-car.png)
+
+### Update Car
+![Update Car](./assets/update.png)
+
+### Search Cars
+![Search Cars](./assets/search.png)
 
 ## Installation
 
