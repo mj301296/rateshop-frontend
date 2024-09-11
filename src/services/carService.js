@@ -2,7 +2,7 @@
 
 import axios from 'axios';
 
-const API_BASE_URL = 'http://rateshop-backend-service:8080/fleet'; // Replace with your Spring Boot backend URL
+const API_BASE_URL = process.env.REACT_APP_RATESHOP_BACKEND_URL; // Replace with your Spring Boot backend URL
 
 export const getAllCars = async () => {
     return await axios.get(`${API_BASE_URL}/all-cars`);
